@@ -1,12 +1,17 @@
-import { TextInput } from "@tremor/react";
 import "./App.css";
-import { Card } from "@tremor/react";
 import BaseLayout from "./layout/baseLayout";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+
+// Create a client
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
-      <BaseLayout />
+      <QueryClientProvider client={queryClient}>
+        <BaseLayout />
+      </QueryClientProvider>
     </>
   );
 }

@@ -1,215 +1,20 @@
+import { useCartStore } from "@/store/useCartStore";
 import {
-    TableHead,
-    TableHeaderCell,
-    TableRow,
-    TableCell,
-    TableBody,
-    Table,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+  TableCell,
+  TableBody,
+  Table,
 } from "@tremor/react";
-const data: {
-  name: string;
-  no?: string;
-  qty: number;
-  price: number;
-  discount: number;
-  total: number;
-}[] = [
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple ",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  }, {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  }, {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-  {
-    no: "1",
-    name: "Apple Watch",
-    qty: 1,
-    price: 100,
-    discount: 10,
-    total: 90,
-  },
-];
+
 const TableProdusctList = () => {
+  const { cart, deleteFromCart} = useCartStore();
+
   return (
     <>
       {/* Table */}
-      <div className=" w-[950px] h-[561px] border-2 max 	border-slate-800   overflow-y-auto ">
+      <div className="  h-[561px] border-2   	border-slate-800   overflow-y-auto ">
         <Table>
           <TableHead>
             <TableRow>
@@ -223,21 +28,22 @@ const TableProdusctList = () => {
           </TableHead>
 
           <TableBody className="  ">
-            {data.map((item) => (
-              <TableRow key={item.name}>
-                <TableCell>{item.no}</TableCell>
+            {cart.items.map((item, idx) => (
+              <TableRow key={item.id} onDoubleClick={() => {
+                deleteFromCart(item)
+              }} className="select-none">
+                <TableCell>{idx + 1}</TableCell>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.qty}</TableCell>
                 <TableCell>{item.price}</TableCell>
-                <TableCell>{item.discount}</TableCell>
-                <TableCell>{item.total}</TableCell>
+                <TableCell>{0}</TableCell>
+                <TableCell>{item.price * item.qty}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
         {/* </Card> */}
       </div>
-      
     </>
   );
 };
