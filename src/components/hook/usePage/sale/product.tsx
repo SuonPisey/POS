@@ -24,7 +24,7 @@ const Product: React.FC<ProductProps> = (props) => {
       <div>
         {/* {dataProdusct.map((item) => ( */}
         <Card
-          className="max-w-xs  mr-1 my-1 min-h-[200px] cursor-pointer"
+          className="max-w-xs  mr-1  min-h-[200px] cursor-pointer  mt-1"
           decoration="top"
           decorationColor="indigo"
           onClick={() => {
