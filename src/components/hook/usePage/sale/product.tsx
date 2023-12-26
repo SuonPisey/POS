@@ -19,12 +19,10 @@ const Product: React.FC<ProductProps> = (props) => {
 
   return (
     <>
-      {/* product */}
-      {/* <div className=" top-56  grid grid-cols-5 gap-5 overflow-y-auto h-[250px] px-1 w-full"> */}
       <div>
         {/* {dataProdusct.map((item) => ( */}
         <Card
-          className="max-w-xs  mr-1  min-h-[200px] cursor-pointer  mt-1"
+          className="max-w-xs  mr-1  h-[200px] cursor-pointer  mt-1"
           decoration="top"
           decorationColor="indigo"
           onClick={() => {
@@ -34,12 +32,12 @@ const Product: React.FC<ProductProps> = (props) => {
           <img
             src={item.img || "https://picsum.photos/200/300"}
             alt={item.name}
+            className="w-[100%] h-[100px]"
           />
-          <Text className="absolute bottom-0  left-1">{item.name}</Text>
+          <Text className="absolute bottom-0  left-1  ">{item.name}</Text>
           <Metric className="absolute top-0 left-1">{item.price}$</Metric>
-          <Text className="top-0 absolute right-1">{item.qty}</Text>
+          <Text className="top-0 absolute right-1">Qty:{item.qty}</Text>
         </Card>
-        {/* ))} */}
       </div>
     </>
   );

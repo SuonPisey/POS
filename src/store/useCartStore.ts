@@ -6,6 +6,7 @@ interface CartItem {
     name: string
     price: number
     qty: number
+    subTotal: number
 }
 
 interface Cart {
@@ -13,6 +14,7 @@ interface Cart {
 }
 
 interface CartStore {
+    [x: string]: any;
     cart: Cart
     addToCart: (item: CartItem) => void
     removeFromCart: (item: CartItem) => void
@@ -24,7 +26,7 @@ export const useCartStore = create<CartStore>()(
     devtools(
         persist((set, get) => ({
             cart: {
-                items: [],
+                items: [] as CartItem[], // Fix: Specify the type of items as CartItem[]
             },
             addToCart: (item: CartItem) => {
                 const cart = get().cart
@@ -95,6 +97,15 @@ export const useCartStore = create<CartStore>()(
                 set({
                     cart: {
                         items: [],
+                    }
+                })
+            },
+            searchCart: (item: CartItem) => {
+                const cart = get().cart
+                set({
+                    cart: {
+                        ...cart,
+                        items: cart.items.filter(i => i.id === item.id)
                     }
                 })
             }

@@ -1,10 +1,9 @@
-import TableProdusctList from "../../components/hook/usePage/sale/table";
 import Product, { Item } from "../../components/hook/usePage/sale/product";
 import Category from "../../components/hook/usePage/sale/category";
 import { useCartStore } from "@/store/useCartStore";
-import { Card, List, ListItem, TextInput, Title } from "@tremor/react";
-import ListItmeSelected from "@/components/hook/usePage/sale/list";
+import { Button, TextInput } from "@tremor/react";
 import ListDataItem from "@/components/hook/usePage/sale/list";
+import React from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProductData: Item[] = [
@@ -17,7 +16,7 @@ const ProductData: Item[] = [
   },
   {
     id: "2",
-    name: "Iphone 12",
+    name: "Iphone 1",
     qty: 1,
     price: 1000,
     img: "https://picsum.photos/200/300",
@@ -31,7 +30,7 @@ const ProductData: Item[] = [
   },
   {
     id: "4",
-    name: "Iphone 12",
+    name: "Iphone 12jdhfashfuasdgfasdgfasdfgasdyufgasfasfjkasdgfaksjgfajkdgf",
     qty: 1,
     price: 1000,
     img: "https://picsum.photos/200/300",
@@ -117,20 +116,27 @@ const ProductData: Item[] = [
 
 const SalePage: React.FC = () => {
   const addToCart = useCartStore((state) => state.addToCart);
-
+  const clearCart = useCartStore((state) => state.clearCart);
+  const searchCart = useCartStore((state) => state.searchCart);
   return (
     <>
-      <div className="flex">
-        <TextInput placeholder="Search" className="mx-5 my-5" />
+      <div className="grid grid-cols-4 gap-10">
+        <TextInput
+          placeholder="Search"
+          className="mx-5 my-5"
+          onChange={searchCart}
+        />
         <TextInput placeholder="Customer Name" className="mx-5 my-5" />
-        <TextInput placeholder="Sale Rep" className="mx-5 my-5" />
-        <TextInput placeholder="Staff" className="mx-5 my-5" />
+        <Button className="bg-slate-400   my-5 mx-5" onClick={clearCart}>
+          Reset All current order
+        </Button>
+        <p className="mx-5 my-8">Rating Change</p>
       </div>
       <div className="  mx-5  grid grid-cols-3 gap-1  ">
         <div className="w-[100%] col-span-2">
           <Category />
           <p className="text-center">Product</p>
-          <div className="top-56  grid grid-cols-6 gap-5 h-[560px] px-1 w-[150]  overflow-y-auto   ">
+          <div className="top-56  grid grid-cols-6 gap-5 h-[760px] px-1 w-[150]  overflow-y-auto   ">
             {ProductData.map((item, idx) => (
               <Product
                 item={item}
@@ -141,6 +147,7 @@ const SalePage: React.FC = () => {
                     name: item.name,
                     qty: item.qty,
                     price: item.price,
+                    subTotal: 0,
                   });
                 }}
               />
@@ -150,22 +157,6 @@ const SalePage: React.FC = () => {
         <div className="border-x-0 w-full">
           <ListDataItem />
         </div>
-
-        {/* <TableProdusctList /> */}
-        {/* <div className="absolute bottom-0  h-16 w-16 right-2/4 pl-20 pb-60 ">
-          <div className="flex">
-            <p>SubTotal:</p>
-            <p className="pl-48">100$</p>
-          </div>
-          <div className="flex">
-            <p>Discount:</p>
-            <p className="pl-48">20%</p>
-          </div>
-          <div className="flex">
-            <p>Total:</p>
-            <p className="pl-[222px]">100$</p>
-          </div>
-        </div> */}
       </div>
     </>
   );
