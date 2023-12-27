@@ -16,7 +16,7 @@ const Category = () => {
           <Button
           key={item.id}
             size="xl"
-            className="bg-slate-100  mx-2 h-8  active:bg-cyan-400"
+            className="bg-slate-100  mx-2 h-8  active:bg-slate-200 "
           >
             {item.name}
           </Button>

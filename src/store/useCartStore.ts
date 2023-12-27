@@ -20,6 +20,7 @@ interface CartStore {
     removeFromCart: (item: CartItem) => void
     deleteFromCart: (item: CartItem) => void
     clearCart: () => void
+    searchCart: (item: CartItem) => void
 }
 
 export const useCartStore = create<CartStore>()(
@@ -105,7 +106,7 @@ export const useCartStore = create<CartStore>()(
                 set({
                     cart: {
                         ...cart,
-                        items: cart.items.filter(i => i.id === item.id)
+                        items: cart.items.filter(i => i.name === item.name)
                     }
                 })
             }

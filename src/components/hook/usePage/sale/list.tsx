@@ -3,9 +3,9 @@ import { useCartStore } from "@/store/useCartStore";
 import { Button } from "@tremor/react";
 import { useEffect, useState } from "react";
 const ListDataItem = () => {
-  const { cart, deleteFromCart, removeFromCart } = useCartStore();
+  const { cart, removeFromCart } = useCartStore();
   const [subTotal, setSubTotal] = useState<number>(0);
-
+  const rate = 4100;
   useEffect(() => {
     const sum = cart.items.reduce(
       (total, item) => total + item.price * item.qty,
@@ -13,7 +13,6 @@ const ListDataItem = () => {
     );
     setSubTotal(sum);
   }, [cart.items]);
-  console.log(subTotal);
   return (
     <>
       <p className="mt-1 pt-1">Curren Order </p>
@@ -31,24 +30,35 @@ const ListDataItem = () => {
               <div className="flex">
                 <p>Qty:{item.qty}</p>
                 <p className="mx-auto">Price:{item.price}</p>
-                <p>Total:{item.price * item.qty}$</p>
+                <p>Total:${item.price * item.qty}</p>
               </div>
             </List>
           </Card>
         ))}
       </div>
-      <div>
-        <p>
-          SubTotal: <span className="ml-10">{subTotal}$</span>
-        </p>
-        <p>
-          Discount: <span className="ml-10">0$</span>
-        </p>
-        <p>
-          Total: <span className="ml-[70px]">{subTotal}$</span>
-        </p>
+      <div className="grid grid-cols-2">
+        <div>
+          <p>
+            SubTotal Riel: <span className="ml-10">{subTotal * rate}៛</span>
+          </p>
+          <p>
+            SubTotal: <span className="ml-[75px]">${subTotal}</span>
+          </p>
+
+          <p>
+            Discount: <span className="ml-[75px]">0</span>
+          </p>
+        </div>
+        <div>
+          <p>
+            Total Riel: <span className="ml-10">{subTotal * rate}៛</span>
+          </p>
+          <p>
+            Total Dollar: <span className="ml-6">${subTotal}</span>
+          </p>
+        </div>
       </div>
-      <br /> 
+      <br />
       <div>
         <Button className="bg-slate-400 w-full h-[90px]">Payment</Button>
       </div>

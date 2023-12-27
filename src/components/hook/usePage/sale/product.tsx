@@ -7,7 +7,10 @@ export interface Item {
   qty: number;
   price: number;
   img?: string;
+  categoryId?: string;
+  code?: string;
 }
+
 interface ProductProps {
   item: Item;
   onClick?: (item: Item) => void;
@@ -20,9 +23,8 @@ const Product: React.FC<ProductProps> = (props) => {
   return (
     <>
       <div>
-        {/* {dataProdusct.map((item) => ( */}
         <Card
-          className="max-w-xs  mr-1  h-[200px] cursor-pointer  mt-1"
+          className="max-w-xs  mr-1  h-[200px] cursor-pointer  mt -1  hover:bg-slate-200  "
           decoration="top"
           decorationColor="indigo"
           onClick={() => {
