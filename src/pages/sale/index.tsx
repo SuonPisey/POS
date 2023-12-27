@@ -9,6 +9,7 @@ import React, { ChangeEvent, useState } from "react";
 const ProductData: Item[] = [
   {
     id: "1",
+    categoryId: "2",
     name: "Apple",
     qty: 1,
     price: 1000,
@@ -17,111 +18,27 @@ const ProductData: Item[] = [
   },
   {
     id: "2",
+    categoryId: "1",
     name: "Iphone 1",
     qty: 1,
     price: 1000,
     img: "https://picsum.photos/200/300",
     code: "1234",
   },
-  {
-    id: "3",
-    name: "Iphone",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-    code: "1234",
-  },
-  {
-    id: "4",
-    name: "Iphone 12",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-    code: "1234",
-  },
-  {
-    id: "5",
-    name: " Iphone 12 Pro Max 256GB Pacific Blue",
-    code: "123s4",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-  },
-  {
-    id: "6",
-    name: "Pacific Blue",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-    code: "1",
-  },
-  {
-    id: "7",
-    name: "Iphone 12 Pro Max 256GB Pacific Blue",
-    qty: 1,
-    price: 1000,
-    code: "12",
-    img: "https://picsum.photos/200/300",
-  },
-  {
-    id: "8",
-    name: "para5000",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-  },
-  {
-    id: "9",
-    name: "Iphone 12",
-    qty: 1,
-    price: 1000,
-    code: "12345",
-    img: "https://picsum.photos/200/300",
-  },
-  {
-    id: "10",
-    name: "Iphone 12",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-    code: "1111",
-  },
-  {
-    id: "11",
-    name: "Iphone 12",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-  },
-  {
-    id: "12",
-    name: "Iphone 12",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-  },
-  {
-    id: "13",
-    name: "Iphone 12",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-  },
-  {
-    id: "14",
-    name: "Iphone 12",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-  },
-  {
-    id: "15",
-    name: "Iphone 12",
-    qty: 1,
-    price: 1000,
-    img: "https://picsum.photos/200/300",
-  },
+  // Existing items...
 ];
+
+// for (let i = 0; i < 1000; i++) {
+//   const newItem: Item = {
+//     id: `${i + 3}`,
+//     name: `Product ${i + 3}`,
+//     qty: 1,
+//     price: 10,
+//     img: "https://picsum.photos/200/300",
+//     code: `${i + 3}`,
+//   };
+//   ProductData.push(newItem);
+// }
 
 const SalePage: React.FC = () => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -165,6 +82,7 @@ const SalePage: React.FC = () => {
                         qty: item.qty,
                         price: item.price,
                         subTotal: 0,
+                        categoryId: ""
                       });
                     }}
                   />
@@ -186,13 +104,14 @@ const SalePage: React.FC = () => {
                         qty: item.qty,
                         price: item.price,
                         subTotal: 0,
+                        categoryId: ""
                       });
                     }}
                   />
                 ))}
           </div>
         </div>
-        <div className="border-x-0 w-full">
+        <div className="border-x-0 w-full ml-2">
           <ListDataItem />
         </div>
       </div>

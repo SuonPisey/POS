@@ -7,6 +7,7 @@ interface CartItem {
     price: number
     qty: number
     subTotal: number
+    categoryId: string
 }
 
 interface Cart {
@@ -107,6 +108,15 @@ export const useCartStore = create<CartStore>()(
                     cart: {
                         ...cart,
                         items: cart.items.filter(i => i.name === item.name)
+                    }
+                })
+            },
+            filterCartbyCategory: (item: CartItem) => {
+                const cart = get().cart
+                set({
+                    cart: {
+                        ...cart,
+                        items: cart.items.filter(i => i.categoryId === item.categoryId)
                     }
                 })
             }

@@ -8,7 +8,7 @@ function LiveTime() {
 
   return (
     <>
-      <div className="text-slate-50 my-5 mx-auto">{time.getDate()+"/"+time.getMonth()+"/"+time.getFullYear()+"/"+time.toLocaleTimeString()}</div>
+      <div className="text-slate-600 my-5 mx-auto">{time.getDate()+"/"+time.getMonth()+"/"+time.getFullYear()+"/"+time.toLocaleTimeString()}</div>
     </>
   );
 }

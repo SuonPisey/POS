@@ -10,16 +10,15 @@ export interface Item {
   categoryId?: string;
   code?: string;
 }
-
+ 
 interface ProductProps {
   item: Item;
   onClick?: (item: Item) => void;
 }
 
 const Product: React.FC<ProductProps> = (props) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { item, onClick } = props;
 
+   const { item, onClick } = props;
   return (
     <>
       <div>
