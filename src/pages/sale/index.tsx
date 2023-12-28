@@ -9,48 +9,92 @@ import React, { ChangeEvent, useState } from "react";
 const ProductData: Item[] = [
   {
     id: "1",
-    categoryId: "2",
+    categoryId: "1",
     name: "Apple",
     qty: 1,
-    price: 1000,
+    price: 100,
     img: "https://picsum.photos/200/300",
     code: "123",
   },
   {
     id: "2",
-    categoryId: "1",
+    categoryId: "2",
     name: "Iphone 1",
     qty: 1,
-    price: 1000,
+    price: 100,
     img: "https://picsum.photos/200/300",
     code: "1234",
   },
+  {
+    id: "3",
+    categoryId: "3",
+    name: "Iphone 1",
+    qty: 1,
+    price: 10,
+    img: "https://picsum.photos/200/300",
+    code: "1234",
+  },
+  {
+    id: "4",
+    categoryId: "4",
+    name: "Apple",
+    qty: 1,
+    price: 10,
+    img: "https://picsum.photos/200/300",
+    code: "123",
+  },
+  {
+    id: "5",
+    categoryId: "1",
+    name: "Iphone 1",
+    qty: 1,
+    price: 10,
+    img: "https://picsum.photos/200/300",
+    code: "1234",
+  },
+  {
+    id: "6",
+    categoryId: "2",
+    name: "Iphone 1",
+    qty: 1,
+    price: 1,
+    img: "https://picsum.photos/200/300",
+    code: "1234",
+  },
+
   // Existing items...
 ];
 
-// for (let i = 0; i < 1000; i++) {
-//   const newItem: Item = {
-//     id: `${i + 3}`,
-//     name: `Product ${i + 3}`,
-//     qty: 1,
-//     price: 10,
-//     img: "https://picsum.photos/200/300",
-//     code: `${i + 3}`,
-//   };
-//   ProductData.push(newItem);
-// }
+for (let i = 0; i < 10; i++) {
+  const newItem: Item = {
+    id: `${i + 3}`,
+    name: `Product iphone ${i + 3}`,
+    qty: 100,
+    price: 10,
+    img: "https://picsum.photos/200/300",
+    code: `${i + 3}`,
+  };
+  ProductData.push(newItem);
+}
 
 const SalePage: React.FC = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const clearCart = useCartStore((state) => state.clearCart);
+  const [selectedcategory, setSelectedCategory] = useState<string>("");
   const [inputValue, setInputValue] = useState<string>("");
+  const [filteredData, setFilteredData] = useState<Item[]>([]);
+  console.log("filteredData", selectedcategory);
+  const handleCategorySelect = (categoryId: string) => {
+    const newData = ProductData.filter(
+      (item) => item.categoryId === selectedcategory
+    );
+    setSelectedCategory(categoryId);
+    setFilteredData(newData);
+  };
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
-    // searchItem({
-    //   name: e.target.value,
-    // });
   }
-  console.log(inputValue);
+
   return (
     <>
       <div className="grid grid-cols-4 gap-10">
@@ -67,10 +111,10 @@ const SalePage: React.FC = () => {
       </div>
       <div className="  mx-5  grid grid-cols-3    ">
         <div className="w-[100%] col-span-2">
-          <Category />
+          <Category onClick={handleCategorySelect} />
           <p className="text-center">Product</p>
           <div className="   grid grid-cols-6 gap-5 h-[760px] px-1 w-[150]  overflow-y-auto   ">
-            {inputValue === ""
+            {selectedcategory === ""  
               ? ProductData.map((item, idx) => (
                   <Product
                     item={item}
@@ -82,7 +126,24 @@ const SalePage: React.FC = () => {
                         qty: item.qty,
                         price: item.price,
                         subTotal: 0,
-                        categoryId: ""
+                        categoryId: "",
+                      });
+                    }}
+                  />
+                ))
+              : inputValue === ""
+              ? filteredData.map((item, idx) => (
+                  <Product
+                    item={item}
+                    key={`idx-${idx}`}
+                    onClick={(item) => {
+                      addToCart({
+                        id: item.id,
+                        name: item.name,
+                        qty: item.qty,
+                        price: item.price,
+                        subTotal: 0,
+                        categoryId: "",
                       });
                     }}
                   />
@@ -104,7 +165,7 @@ const SalePage: React.FC = () => {
                         qty: item.qty,
                         price: item.price,
                         subTotal: 0,
-                        categoryId: ""
+                        categoryId: "",
                       });
                     }}
                   />
