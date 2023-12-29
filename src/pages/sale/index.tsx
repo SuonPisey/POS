@@ -1,19 +1,17 @@
 import Product, { Item } from "../../components/hook/usePage/sale/product";
 import Category from "../../components/hook/usePage/sale/category";
 import { useCartStore } from "@/store/useCartStore";
-import { Button, TextInput } from "@tremor/react";
 import ListDataItem from "@/components/hook/usePage/sale/list";
 import React, { ChangeEvent, useState } from "react";
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProductData: Item[] = [
   {
     id: "1",
     categoryId: "1",
-    name: "Apple",
+    name: "Apple Apple Apple Apple Apple   ",
     qty: 1,
     price: 100,
-    img: "https://picsum.photos/200/300",
+    img: "/para.png",
     code: "123",
   },
   {
@@ -22,7 +20,7 @@ const ProductData: Item[] = [
     name: "Iphone 1",
     qty: 1,
     price: 100,
-    img: "https://picsum.photos/200/300",
+    img: "/para.png",
     code: "1234",
   },
   {
@@ -31,7 +29,7 @@ const ProductData: Item[] = [
     name: "Iphone 1",
     qty: 1,
     price: 10,
-    img: "https://picsum.photos/200/300",
+    img: "/para.png",
     code: "1234",
   },
   {
@@ -40,7 +38,7 @@ const ProductData: Item[] = [
     name: "Apple",
     qty: 1,
     price: 10,
-    img: "https://picsum.photos/200/300",
+    img: "/para.png",
     code: "123",
   },
   {
@@ -49,7 +47,7 @@ const ProductData: Item[] = [
     name: "Iphone 1",
     qty: 1,
     price: 10,
-    img: "https://picsum.photos/200/300",
+    img: "/para.png",
     code: "1234",
   },
   {
@@ -58,7 +56,7 @@ const ProductData: Item[] = [
     name: "Iphone 1",
     qty: 1,
     price: 1,
-    img: "https://picsum.photos/200/300",
+    img: "/para.png",
     code: "1234",
   },
 
@@ -71,7 +69,7 @@ for (let i = 0; i < 10; i++) {
     name: `Product iphone ${i + 3}`,
     qty: 100,
     price: 10,
-    img: "https://picsum.photos/200/300",
+    img: "/para.png ",
     code: `${i + 3}`,
   };
   ProductData.push(newItem);
@@ -97,7 +95,7 @@ const SalePage: React.FC = () => {
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-10">
+      {/* <div className="grid grid-cols-4 gap-10">
         <TextInput
           placeholder="Search"
           className="mx-5 my-5"
@@ -108,13 +106,13 @@ const SalePage: React.FC = () => {
           Reset All current order
         </Button>
         <p className="mx-5 my-8">Rating Change:4100/$</p>
-      </div>
+      </div> */}
       <div className="  mx-5  grid grid-cols-3    ">
-        <div className="w-[100%] col-span-2">
+        <div className="w-[100%] col-span-2 h-full  ">
           <Category onClick={handleCategorySelect} />
-          <p className="text-center">Product</p>
-          <div className="   grid grid-cols-6 gap-5 h-[760px] px-1 w-[150]  overflow-y-auto   ">
-            {selectedcategory === ""  
+          <p className="text-center text-font-bold">Product</p>
+          <div className="   grid grid-cols-4 gap-5 h-[800px] px-1 w-[150]  overflow-y-auto   ">
+            {selectedcategory === ""
               ? ProductData.map((item, idx) => (
                   <Product
                     item={item}

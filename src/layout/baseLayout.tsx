@@ -4,8 +4,10 @@ import SalePage from "../pages/sale";
 export default function BaseLayout() {
   return (
     <>
-      <Navbar />
-      <SalePage/>
+      <div className="bg-gray-100">
+        <Navbar />
+        <SalePage />
+      </div>
     </>
   );
 }

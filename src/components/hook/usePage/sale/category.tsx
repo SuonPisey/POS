@@ -1,8 +1,6 @@
 import { Button } from "@tremor/react";
 import { useQuery } from "@tanstack/react-query";
 import { CategoryAPI } from "../../../../data/category";
-import { useState } from "react";
-
 interface CategoryProps {
   onClick: (categoryId: string) => void;
 }

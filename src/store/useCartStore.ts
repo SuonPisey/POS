@@ -22,6 +22,7 @@ interface CartStore {
     deleteFromCart: (item: CartItem) => void
     clearCart: () => void
     searchCart: (item: CartItem) => void
+    openSheet?: boolean
 }
 
 export const useCartStore = create<CartStore>()(

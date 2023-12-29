@@ -2,6 +2,16 @@ import { Card, List, Title } from "@tremor/react";
 import { useCartStore } from "@/store/useCartStore";
 import { Button } from "@tremor/react";
 import { useEffect, useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import SheetPayment from "@/components/sheet";
 const ListDataItem = () => {
   const { cart, removeFromCart } = useCartStore();
   const [subTotal, setSubTotal] = useState<number>(0);
@@ -15,11 +25,31 @@ const ListDataItem = () => {
   }, [cart.items]);
   return (
     <>
-      <p className="mt-1 pt-1">Curren Order </p>
+      {/* <p className="mt-1 pt-1">Curren Order </p> */}
+      <div className="grid grid-cols-2">
+        <div className="mt-1 pt-1 font-bold	 ">Curren Order</div>
+        <div className="mt-1 pt-1 ">
+          <Select>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Customer" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Fruits</SelectLabel>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>{" "}
+        </div>
+      </div>
       <div className="overflow-auto h-[560px] mt-5 ">
         {cart.items.map((item, idx) => (
           <Card
-            className="max-w-full max-h-20 my-3 border-x-0 select-none cursor-pointer "
+            className="max-w-full max-h-20 my-3 border-x-0 select-none cursor-pointer  border-collapse border-2	 border-slate-600"
             key={idx}
             onClick={() => {
               removeFromCart(item);
@@ -60,7 +90,10 @@ const ListDataItem = () => {
       </div>
       <br />
       <div>
-        <Button className="bg-slate-400 w-full h-[90px]">Payment</Button>
+        {/* <Button className=" hover:bg-slate-300  bg-slate-600 w-full h-[90px] text-slate-100 hover:text-slate-600 ease-in	" >
+          Payment
+        </Button> */}
+        <SheetPayment className="hover:bg-slate-300  bg-slate-600 w-full h-[90px] text-slate-100 hover:text-slate-600 ease-in mt-10 " />
       </div>
     </>
   );

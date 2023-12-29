@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Input } from "../ui/input";
 function LiveTime() {
   const [time, setTime] = useState(new Date());
   setInterval(() => {
@@ -8,7 +9,9 @@ function LiveTime() {
 
   return (
     <>
-      <div className="text-slate-600 my-5 mx-auto">{time.getDate()+"/"+time.getMonth()+"/"+time.getFullYear()+"/"+time.toLocaleTimeString()}</div>
+      <div className="text-slate-600 text-[12px]  ">
+        {time.toLocaleTimeString()}
+      </div>
     </>
   );
 }

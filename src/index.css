@@ -1,8 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap");
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+
+  font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 200;
 
@@ -31,6 +35,12 @@ body {
   /* place-items: center;
   min-width: 320px;
   min-height: 100vh; */
+}
+.bg-product {
+  background-color: rgba(246, 251, 255, 1);
+}
+.bg-add-tocard {
+  background-color: rgba(89, 163, 232, 1);
 }
 
 h1 {
