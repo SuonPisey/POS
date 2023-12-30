@@ -3,6 +3,7 @@ import Category from "../../components/hook/usePage/sale/category";
 import { useCartStore } from "@/store/useCartStore";
 import ListDataItem from "@/components/hook/usePage/sale/list";
 import React, { ChangeEvent, useState } from "react";
+import { ModalPayment } from "@/components/hook/usePage/sale/modal";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProductData: Item[] = [
   {
@@ -107,6 +108,7 @@ const SalePage: React.FC = () => {
         </Button>
         <p className="mx-5 my-8">Rating Change:4100/$</p>
       </div> */}
+ 
       <div className="  mx-5  grid grid-cols-3    ">
         <div className="w-[100%] col-span-2 h-full  ">
           <Category onClick={handleCategorySelect} />

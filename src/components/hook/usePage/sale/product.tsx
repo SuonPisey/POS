@@ -23,7 +23,7 @@ const Product: React.FC<ProductProps> = (props) => {
     <>
       <div>
         <Card
-          className=" min-w-[250px]  grid gap-2   min-h-[300px]  bg-product"
+          className=" min-w-[250px]  grid gap-2   min-h-[300px]  bg-product "
           style={{
             borderRadius: "0px 15px 15px 15px",
           }}
@@ -47,15 +47,15 @@ const Product: React.FC<ProductProps> = (props) => {
               <img
                 alt="POS Item Image"
                 className="w-[200px] h-[150px] object-cover "
-                 src={item.img || "https://picsum.photos/200/300"}
+                src={item.img || "https://picsum.photos/200/300"}
                 style={{
                   aspectRatio: "100/100",
                   objectFit: "cover",
                 }}
-               />
+              />
             </div>
             <div className="grid gap-1 text-center">
-              <CardTitle className="text-md">{item.name}</CardTitle>
+              <CardTitle className="text-md">{item.name}</CardTitle>  
             </div>
           </CardContent>
           <CardFooter className="text-xs p-0 justify-end flex items-center">
@@ -80,3 +80,4 @@ const Product: React.FC<ProductProps> = (props) => {
   );
 };
 export default Product;
+  
