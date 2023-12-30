@@ -12,6 +12,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import SheetPayment from "@/components/sheet";
+import { Table, TableHead, TableRow } from "@/components/ui/table";
+import { Item } from "@radix-ui/react-select";
 const ListDataItem = () => {
   const { cart, removeFromCart } = useCartStore();
   const [subTotal, setSubTotal] = useState<number>(0);
@@ -28,8 +30,8 @@ const ListDataItem = () => {
       {/* <p className="mt-1 pt-1">Curren Order </p> */}
       <div className="grid grid-cols-2">
         <div className="mt-1 pt-1 font-bold	 ">Curren Order</div>
-        <div className="mt-1 pt-1 ">
-          <Select>
+        <div className="mt-1 pt-1 bg-slate-100 ">
+          <Select >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Customer" />
             </SelectTrigger>
@@ -66,7 +68,7 @@ const ListDataItem = () => {
           </Card>
         ))}
       </div>
-      <div className="grid grid-cols-2">
+      {/* <div className="grid grid-cols-2">
         <div>
           <p>
             SubTotal Riel: <span className="ml-10">{subTotal * rate}៛</span>
@@ -87,13 +89,34 @@ const ListDataItem = () => {
             Total Dollar: <span className="ml-6">${subTotal}</span>
           </p>
         </div>
-      </div>
+      </div> */}
+      <Table>
+        <TableRow>
+          <TableHead className="w-[100px]">Sub Total (USD)</TableHead>
+          <TableHead className="w-[100px]">${subTotal}</TableHead>
+          <TableHead className="w-[100px]">Grand Total(USD)</TableHead>
+          <TableHead className="w-[100px]">${subTotal}</TableHead>
+        </TableRow>
+        <TableRow>
+          <TableHead className="w-[100px]">Sub Total (KH)</TableHead>
+          <TableHead className="w-[100px]">{subTotal * rate}៛</TableHead>
+          <TableHead className="w-[100px]">Grand Total(KH)</TableHead>
+          <TableHead className="w-[100px]">{subTotal * rate}៛</TableHead>
+
+        </TableRow>
+        <TableRow>
+
+          <TableHead className="w-[100px]">Discount </TableHead>
+          <TableHead className="w-[100px]">$1000</TableHead>
+        </TableRow>
+
+      </Table>
       <br />
       <div>
         {/* <Button className=" hover:bg-slate-300  bg-slate-600 w-full h-[90px] text-slate-100 hover:text-slate-600 ease-in	" >
           Payment
         </Button> */}
-        <SheetPayment className="hover:bg-slate-300  bg-slate-600 w-full h-[90px] text-slate-100 hover:text-slate-600 ease-in mt-10 " />
+        <SheetPayment className="hover:bg-slate-300  bg-slate-600 w-full h-[60px] text-slate-100 hover:text-slate-600 ease-in   " />
       </div>
     </>
   );

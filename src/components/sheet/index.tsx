@@ -1,4 +1,4 @@
-import {} from "@radix-ui/react-select";
+import { } from "@radix-ui/react-select";
 import { Button } from "../ui/button";
 import {
   Sheet,
@@ -19,6 +19,10 @@ interface SheetPaymentProps {
 }
 const SheetPayment: React.FC<SheetPaymentProps> = (props) => {
   const { className } = props;
+  function rgba(arg0: number, arg1: number, arg2: number, arg3: number) {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <>
       <Sheet>
@@ -28,6 +32,7 @@ const SheetPayment: React.FC<SheetPaymentProps> = (props) => {
             className={className}
             style={{
               borderRadius: "8px",
+              backgroundColor: "rgba(89, 163, 232, 1)",
             }}
           >
             Payment
@@ -37,31 +42,15 @@ const SheetPayment: React.FC<SheetPaymentProps> = (props) => {
           <SheetHeader>
             <SheetTitle className="text-center">Payment Detail </SheetTitle>
           </SheetHeader>
-          <SheetDescription className="grid grid-cols-1 gap-8">
-            <div>
-              <p>Receive (KH)</p>
-              <Input />
-            </div>
-            <div>
-              <p>Receive (USD)</p>
-              <Input />
-            </div>
-            <div>
-              <p>Discount</p>
-              <Input />
-            </div>
-            <div>
-              <p>Payment method</p>
-              <Input />
-            </div>
-            <div>
-              <p>Description</p>
-              <Textarea className="bg-slate-100 resize- none  h-[120px]" />
-            </div>
+          <SheetDescription className="grid grid-cols-1 gap-4">
+
             <Table>
               <TableRow>
-                <TableHead className="w-[100px]">Sub Total</TableHead>
+                <TableHead className="w-[100px]">Sub Total(USD)</TableHead>
                 <TableHead className="w-[100px]">$1000</TableHead>
+              </TableRow> <TableRow>
+                <TableHead className="w-[100px]">Sub Total(KH)</TableHead>
+                <TableHead className="w-[100px]">10000៛</TableHead>
               </TableRow>
               <TableRow>
                 <TableHead className="w-[100px]">Discount</TableHead>
@@ -89,15 +78,34 @@ const SheetPayment: React.FC<SheetPaymentProps> = (props) => {
                 <TableHead className="w-[100px]">1000៛</TableHead>
               </TableRow>
             </Table>
+            <div >
+              <p>Receive (KH)</p>
+              <Input />
+            </div>
+            <div>
+              <p>Receive (USD)</p>
+              <Input />
+            </div>
+            <div>
+              <p>Discount</p>
+              <Input />
+            </div>
+            <div>
+              <p>Payment method</p>
+              <Input />
+            </div>
+            <div className="mb-5">
+              <p>Description</p>
+              <Textarea className="bg-slate-100 resize- none  h-[100px]" />
+            </div>
           </SheetDescription>
           <SheetFooter>
             <SheetClose asChild>
               <Button
                 type="submit"
-                className=" bg-slate-600 hover:bg-slate-300 text-slate-100 absolute bottom-0 w-full right-0 h-[50px]"
+                className=" bg-add-tocard hover:bg-slate-300 text-slate-100 absolute bottom-0 w-full right-0 h-[50px]"
               >
-                Save changes
-              </Button>
+                Submit              </Button>
             </SheetClose>
           </SheetFooter>
         </SheetContent>

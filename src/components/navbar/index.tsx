@@ -14,18 +14,19 @@ export default function Navbar() {
         <div className="grid text-slate-600 grid-cols-4  ">
           <Input placeholder="Search " className=" my-auto ml-5 w-[50%]" />
           <Button
-            className="bg-slate-600    ml-auto w-[50%] my-5 mx-5 text-slate-100 hover:text-slate-600 " 
+            className=" bg-add-tocard    ml-auto w-[50%] my-5 mx-5 text-slate-100 hover:text-slate-500 "
             onClick={clearCart}
-          style={{
-            borderRadius: "6px",
-          }}
+            style={{
+              borderRadius: "6px",
+              
+            }}
           >
             Cancel Order
           </Button>
           {/* <div className="mx-auto my-auto py-5">Warehouse:Head</div> */}
           {/* <div className="mx-auto py-5 col-span-2">User Name:SuonPisey</div> */}
           <div className="ml-auto py-5 col-span-2 mr-5 flex  my-auto gap-5">
-            <p>
+            <p className="font-bold">
               SuonPisey
               <LiveTime />
             </p>
