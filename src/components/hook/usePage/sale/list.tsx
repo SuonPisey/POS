@@ -10,11 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import SheetPayment from "@/components/sheet";
-import { Table, TableHead, TableRow } from "@/components/ui/table";
+
+import { Table, TableCell, TableRow } from "@/components/ui/table";
 import GenerateIcon from "@/components/icons/GenerateIcon";
-import { Button } from "@/components/ui/button";
-import { ModalPayment } from "./modal";
+import ModalPayment from "./modal";
 const ListDataItem = () => {
   const { cart, removeFromCart } = useCartStore();
   const [subTotal, setSubTotal] = useState<number>(0);
@@ -31,7 +30,7 @@ const ListDataItem = () => {
   return (
     <>
       <div className="grid grid-cols-2">
-        <div className="mt-1 pt-1 font-bold	my-auto flex">
+        <div className="mt-1 pt-1  	my-auto flex">
           <p className="pt-1"> Curren Order</p>
           <GenerateIcon
             icon="delete"
@@ -62,7 +61,7 @@ const ListDataItem = () => {
       <div className="overflow-auto h-[560px] mt-5 ">
         {cart.items.map((item, idx) => (
           <Card
-            className="max-w-full max-h-20  border-x-0 select-none cursor-pointer  border-collapse border-b-2	 border-slate-600"
+            className="max-w-full max-h-20  border-x-0 select-none cursor-pointer  border-dashed border-b-2	 border-slate-600"
             key={idx}
             onClick={() => {
               removeFromCart(item);
@@ -81,27 +80,27 @@ const ListDataItem = () => {
       </div>
       <Table>
         <TableRow>
-          <TableHead className="w-[100px]">Sub Total (USD)</TableHead>
-          <TableHead className="w-[100px]">${subTotal}</TableHead>
-          <TableHead className="w-[100px]">Grand Total(USD)</TableHead>
-          <TableHead className="w-[100px]">${subTotal}</TableHead>
+          <TableCell className="w-[100px]">Sub Total (USD)</TableCell>
+          <TableCell className="w-[100px]">${subTotal}</TableCell>
+          <TableCell className="w-[100px]">Grand Total(USD)</TableCell>
+          <TableCell className="w-[100px]">${subTotal}</TableCell>
         </TableRow>
         <TableRow>
-          <TableHead className="w-[100px]">Sub Total (KH)</TableHead>
-          <TableHead className="w-[100px]">{subTotal * rate}៛</TableHead>
-          <TableHead className="w-[100px]">Grand Total(KH)</TableHead>
-          <TableHead className="w-[100px]">{subTotal * rate}៛</TableHead>
+          <TableCell className="w-[100px]">Sub Total (KH)</TableCell>
+          <TableCell className="w-[100px]">{subTotal * rate}៛</TableCell>
+          <TableCell className="w-[100px]">Grand Total(KH)</TableCell>
+          <TableCell className="w-[100px]">{subTotal * rate}៛</TableCell>
         </TableRow>
         <TableRow>
-          <TableHead className="w-[100px]">Discount </TableHead>
-          <TableHead className="w-[100px]">$1000</TableHead>
-          <TableHead className="w-[30px]"></TableHead>
-          <TableHead className="w-[30px]"></TableHead>
+          <TableCell className="w-[100px]">Discount </TableCell>
+          <TableCell className="w-[100px]"> </TableCell>
+          <TableCell className="w-[30px]"></TableCell>
+          <TableCell className="w-[30px]"></TableCell>
         </TableRow>
       </Table>
       <br />
       <div>
-        <ModalPayment />
+        <ModalPayment SubTotalKH={subTotal * rate} SubTotalUSD={subTotal} />
       </div>
     </>
   );

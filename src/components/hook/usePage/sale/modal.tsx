@@ -7,31 +7,59 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React from "react";
+import { useCartStore } from "@/store/useCartStore";
 
-export function ModalPayment() {
+interface ModalPaymentProps {
+  className?: string; // Add className property
+  SubTotalUSD?: number;
+  SubTotalKH?: number;
+}
+
+const ModalPayment: React.FC<ModalPaymentProps> = (props) => {
+  const [open, setOpen] = React.useState(false);
+  const [valueReceiveKh, setValueReceiveKh] = React.useState("");
+  const [valueReceiveUsd, setValueReceiveUsd] = React.useState("");
+  const { className, SubTotalUSD, SubTotalKH } = props;
+  const clearCart = useCartStore((state) => state.clearCart);
+
+  const handleChangeReceiveUsd = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValueReceiveUsd(e.target.value);
+    console.log(valueReceiveUsd);
+  };
+  const handleChangeReceiveKh = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValueReceiveKh(e.target.value);
+    console.log(valueReceiveKh);
+  };
+
+  const handleSubmit = () => {
+    clearCart();
+    setOpen(false);
+  };
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="hover:bg-slate-300  bg-add-tocard  w-full h-[60px] text-slate-100 hover:text-slate-600 ease-in ">
+        <Button className="hover:bg-slate-300   bg-cyan-400 w-full h-[50px] text-slate-100 hover:text-slate-600 ease-in  mx-auto  ">
           Payment
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] bg-slate-100  sm:max-h-[600px]">
         <DialogHeader>
-          <DialogTitle>Payment Detail </DialogTitle>
+          <DialogTitle>Payment Detail</DialogTitle>
           <div>
             <Tabs className="w-full select-none " defaultValue="tab1 ">
               <TabsList className="flex justify-around items-center p-4 bg-slate-100 rounded-t-lg">
-                <TabsTrigger value="tab1" className="select-none">
-                  Sub total(USD):$1000
-                </TabsTrigger>
-                <TabsTrigger value="tab2">Sub total(KH):100000៛</TabsTrigger>
+                <Label htmlFor="name" className="text-right">
+                  Sub total(USD):$ {SubTotalUSD}
+                </Label>
+                {/* <TabsTrigger value="tab2">Sub total(KH):100000៛</TabsTrigger> */}
+                <Label htmlFor="name" className="text-right">
+                  Sub total(KH):{SubTotalKH} ៛
+                </Label>
               </TabsList>
               <TabsContent className="hidden" value="tab1">
                 <Card>
@@ -61,13 +89,13 @@ export function ModalPayment() {
             <Label htmlFor="name" className="text-right">
               payment Method
             </Label>
-            <Button className=" bg-add-tocard rounded-[10px] text-slate-100 hover:text-slate-600">
+            <Button className=" bg-cyan-400 rounded-[10px] text-slate-100 hover:bg-cyan-200">
               Cash
             </Button>
-            <Button className=" bg-add-tocard rounded-[10px] text-slate-100 hover:text-slate-600">
+            <Button className=" bg-cyan-400 rounded-[10px] text-slate-100 hover:bg-cyan-200">
               Bank
             </Button>
-            <Button className=" bg-add-tocard rounded-[10px] text-slate-100 hover:text-slate-600">
+            <Button className=" bg-cyan-400  rounded-[10px] text-slate-100 hover:bg-cyan-200">
               Other
             </Button>
           </div>
@@ -75,27 +103,42 @@ export function ModalPayment() {
             <Label htmlFor="name" className="text-right">
               Receive (USD)
             </Label>
-            <Input id="name" className="col-span-3" />
+            <Input
+              id="receiveUsd"
+              className="col-span-3"
+              value={valueReceiveUsd}
+              onChange={handleChangeReceiveUsd}
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               Receive (KH)
             </Label>
-            <Input id="name" className="col-span-3" />
+            <Input
+              id="receiveKh"
+              className="col-span-3"
+              value={valueReceiveKh}
+              onChange={handleChangeReceiveKh}
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               Discount
             </Label>
-            <Input id="username" className="col-span-3" />
+            <Input id="discount" className="col-span-3" />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" className=" bg-add-tocard rounded-[10px] text-slate-100 hover:text-slate-600" >
+          <Button
+            type="submit"
+            className=" bg-cyan-400 rounded-[10px] text-slate-100 hover:bg-cyan-200"
+            onClick={handleSubmit}
+          >
             Save changes
           </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
-}
+};
+export default ModalPayment;

@@ -1,7 +1,8 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
-import React from "react";
+import React, { useEffect } from "react";
 import GenerateIcon from "@/components/icons/GenerateIcon";
+import { CopySlash } from "lucide-react";
 export interface Item {
   id: string;
   name: string;
@@ -11,7 +12,6 @@ export interface Item {
   categoryId?: string;
   code?: string;
 }
-
 interface ProductProps {
   item: Item;
   onClick?: (item: Item) => void;
@@ -19,16 +19,24 @@ interface ProductProps {
 
 const Product: React.FC<ProductProps> = (props) => {
   const { item, onClick } = props;
+  const [qty, setQty] = React.useState(item.qty);
+
+  const handleAdjustQty = () => {
+    setQty((item.qty = item.qty - 1));
+    console.log(qty);
+  };
+
   return (
     <>
       <div>
         <Card
-          className=" min-w-[250px]  grid gap-2   min-h-[300px]  bg-product "
+          className="max-w-[230px] min-w-[230px]  grid gap-2 min-h-[300px] "
           style={{
             borderRadius: "0px 15px 15px 15px",
           }}
           onClick={() => {
             onClick?.(item);
+            handleAdjustQty();
           }}
         >
           <div
@@ -55,13 +63,13 @@ const Product: React.FC<ProductProps> = (props) => {
               />
             </div>
             <div className="grid gap-1 text-center">
-              <CardTitle className="text-md">{item.name}</CardTitle>  
+              <CardTitle className="text-md">{item.name}</CardTitle>
             </div>
           </CardContent>
           <CardFooter className="text-xs p-0 justify-end flex items-center">
             <div className="flex flex-col items-start gap-1 text-sm mx-auto ">
               <Badge
-                className="items-center w-[180px] h-[30px]  cursor-pointer  hover:bg-slate-300  bg-add-tocard  "
+                className="items-center w-[180px] h-[30px]  cursor-pointer  hover:bg-slate-300  bg-cyan-500  "
                 variant="outline"
               >
                 <GenerateIcon
@@ -80,4 +88,3 @@ const Product: React.FC<ProductProps> = (props) => {
   );
 };
 export default Product;
-  
