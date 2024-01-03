@@ -63,20 +63,16 @@ const ProductData: Item[] = [
 
 const SalePage: React.FC = () => {
   const addToCart = useCartStore((state) => state.addToCart);
-  const [selectedcategory, setSelectedCategory] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [inputValue, setInputValue] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Item[]>([]);
-  console.log("filteredData", selectedcategory);
   const handleCategorySelect = (categoryId: string) => {
     const newData = ProductData.filter(
-      (item) => item.categoryId === selectedcategory
+      (item) => item.categoryId === selectedCategory
     );
     setSelectedCategory(categoryId);
     setFilteredData(newData);
   };
-  function handleSearch(e: ChangeEvent<HTMLInputElement>) {
-    setInputValue(e.target.value);
-  }
 
   return (
     <>
@@ -84,7 +80,7 @@ const SalePage: React.FC = () => {
         <div className="w-[100%] col-span-2 h-full  ">
           <Category onClick={handleCategorySelect} />
           <div className="   grid grid-cols-5 gap-5 h-[800px] px-1 w-[150]  overflow-y-auto   mt-4">
-            {selectedcategory === ""
+            {selectedCategory === ""
               ? ProductData.map((item, idx) => (
                   <Product
                     item={item}

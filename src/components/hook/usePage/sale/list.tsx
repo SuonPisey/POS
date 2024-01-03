@@ -1,4 +1,4 @@
-import { Card, List, Title } from "@tremor/react";
+import { List, Title } from "@tremor/react";
 import { useCartStore } from "@/store/useCartStore";
 import { useEffect, useState } from "react";
 import {
@@ -14,6 +14,7 @@ import {
 import { Table, TableCell, TableRow } from "@/components/ui/table";
 import GenerateIcon from "@/components/icons/GenerateIcon";
 import ModalPayment from "./modal";
+import { Card } from "@/components/ui/card";
 const ListDataItem = () => {
   const { cart, removeFromCart } = useCartStore();
   const [subTotal, setSubTotal] = useState<number>(0);
@@ -40,7 +41,7 @@ const ListDataItem = () => {
           />
         </div>
 
-        <div className="mt-1 pt-1 bg-slate-100  my-auto">
+        <div className="mt-1 pt-1   my-auto bg-opacity-75 backdrop-blur-lg">
           <Select>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Customer" />
@@ -60,16 +61,16 @@ const ListDataItem = () => {
       </div>
       <div className="overflow-auto h-[560px] mt-5 ">
         {cart.items.map((item, idx) => (
-          <Card
-            className="max-w-full max-h-20  border-x-0 select-none cursor-pointer  border-dashed border-b-2	 border-slate-600"
+          <Card 
+            className="max-w-full   min-h-[60px]  border-x-0 select-none cursor-pointer shadow-md hover:shadow-lg bg-white my-2 rounded-md px-6 py-2"
             key={idx}
             onClick={() => {
               removeFromCart(item);
             }}
           >
-            <List>
+            <List >
               <Title>{item.name}</Title>
-              <div className="flex">
+              <div className="flex  ">
                 <p>Qty:{item.qty}</p>
                 <p className="mx-auto">Price:{item.price}</p>
                 <p>Total:${item.price * item.qty}</p>

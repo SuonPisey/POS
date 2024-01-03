@@ -11,34 +11,46 @@ import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCartStore } from "@/store/useCartStore";
+import { format } from "path";
 
 interface ModalPaymentProps {
   className?: string; // Add className property
-  SubTotalUSD?: number;
-  SubTotalKH?: number;
+  SubTotalUSD: number;
+  SubTotalKH: number;
 }
 
 const ModalPayment: React.FC<ModalPaymentProps> = (props) => {
   const [open, setOpen] = React.useState(false);
-  const [valueReceiveKh, setValueReceiveKh] = React.useState("");
-  const [valueReceiveUsd, setValueReceiveUsd] = React.useState("");
+  const [valueReceiveKh, setValueReceiveKh] = useState<number>(0);
+  const [valueReceiveUsd, setValueReceiveUsd] = useState<number>(0);
   const { className, SubTotalUSD, SubTotalKH } = props;
   const clearCart = useCartStore((state) => state.clearCart);
+  const totalReceiveUsd = valueReceiveKh / 4100 + valueReceiveUsd;
 
   const handleChangeReceiveUsd = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValueReceiveUsd(e.target.value);
-    console.log(valueReceiveUsd);
+    setValueReceiveUsd(parseFloat(e.target.value));
   };
   const handleChangeReceiveKh = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValueReceiveKh(e.target.value);
-    console.log(valueReceiveKh);
+    setValueReceiveKh(parseFloat(e.target.value));
   };
-
+  // useEffect(() => {
+  //   console.log(valueReceiveUsd, valueReceiveKh);
+  // }, [valueReceiveUsd, valueReceiveKh]);
   const handleSubmit = () => {
-    clearCart();
     setOpen(false);
+    const total = valueReceiveKh / 4100 + valueReceiveUsd;
+    if (total < parseFloat(SubTotalUSD.toString())) {
+      alert("Please input receive Khmer Riel");
+      setOpen(true);
+      return;
+    } else {
+      alert("Success");
+      clearCart();
+      setValueReceiveKh(0);
+      setValueReceiveUsd(0);
+    }
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -54,9 +66,12 @@ const ModalPayment: React.FC<ModalPaymentProps> = (props) => {
             <Tabs className="w-full select-none " defaultValue="tab1 ">
               <TabsList className="flex justify-around items-center p-4 bg-slate-100 rounded-t-lg">
                 <Label htmlFor="name" className="text-right">
-                  Sub total(USD):$ {SubTotalUSD}
+                  Sub total(USD):
+                  {parseFloat(
+                    (SubTotalUSD - totalReceiveUsd).toFixed(2)
+                  ).toString()}
                 </Label>
-                {/* <TabsTrigger value="tab2">Sub total(KH):100000៛</TabsTrigger> */}
+                {/* <TabsTrigger value=x`"tab2">Sub total(KH):100000៛</TabsTrigger> */}
                 <Label htmlFor="name" className="text-right">
                   Sub total(KH):{SubTotalKH} ៛
                 </Label>
@@ -123,7 +138,7 @@ const ModalPayment: React.FC<ModalPaymentProps> = (props) => {
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
-              Discount
+              DiscountF
             </Label>
             <Input id="discount" className="col-span-3" />
           </div>

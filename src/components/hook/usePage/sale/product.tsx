@@ -13,7 +13,7 @@ export interface Item {
   code?: string;
 }
 interface ProductProps {
-  item: Item;
+  item: Item; 
   onClick?: (item: Item) => void;
 }
 
@@ -23,14 +23,13 @@ const Product: React.FC<ProductProps> = (props) => {
 
   const handleAdjustQty = () => {
     setQty((item.qty = item.qty - 1));
-    console.log(qty);
   };
 
   return (
     <>
       <div>
         <Card
-          className="max-w-[230px] min-w-[230px]  grid gap-2 min-h-[300px] "
+          className="max-w-[230px] min-w-[230px]  grid gap-2 min-h-[300px] max-h-[300px] "
           style={{
             borderRadius: "0px 15px 15px 15px",
           }}

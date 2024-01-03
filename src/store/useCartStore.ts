@@ -112,15 +112,7 @@ export const useCartStore = create<CartStore>()(
                     }
                 })
             },
-            filterCartbyCategory: (item: CartItem) => {
-                const cart = get().cart
-                set({
-                    cart: {
-                        ...cart,
-                        items: cart.items.filter(i => i.categoryId === item.categoryId)
-                    }
-                })
-            }
+            
         }), {
             name: 'cart-storage'
         })
