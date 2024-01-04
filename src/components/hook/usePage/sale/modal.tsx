@@ -13,40 +13,45 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React, { useEffect, useState } from "react";
 import { useCartStore } from "@/store/useCartStore";
-import { format } from "path";
+import useModalStore from "@/store/usemodalStore";
 
 interface ModalPaymentProps {
   className?: string; // Add className property
-  SubTotalUSD: number;
-  SubTotalKH: number;
+  // SubTotalUSD: number;
+  // SubTotalKH: number;
 }
 
-const ModalPayment: React.FC<ModalPaymentProps> = (props) => {
+const ModalPayment: React.FC<ModalPaymentProps> = () => {
   const [open, setOpen] = React.useState(false);
   const [valueReceiveKh, setValueReceiveKh] = useState<number>(0);
   const [valueReceiveUsd, setValueReceiveUsd] = useState<number>(0);
-  const { className, SubTotalUSD, SubTotalKH } = props;
   const clearCart = useCartStore((state) => state.clearCart);
   const totalReceiveUsd = valueReceiveKh / 4100 + valueReceiveUsd;
+  const { propModalData } = useModalStore() as { propModalData: number };
 
   const handleChangeReceiveUsd = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValueReceiveUsd(parseFloat(e.target.value));
+    if (isNaN(parseFloat(e.target.value))) {
+      setValueReceiveUsd(0);
+    }
   };
   const handleChangeReceiveKh = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValueReceiveKh(parseFloat(e.target.value));
+    if (isNaN(parseFloat(e.target.value))) {
+      setValueReceiveKh(0);
+    }
   };
-  // useEffect(() => {
-  //   console.log(valueReceiveUsd, valueReceiveKh);
-  // }, [valueReceiveUsd, valueReceiveKh]);
+  useEffect(() => {
+    console.log(valueReceiveUsd, valueReceiveKh);
+  }, [valueReceiveUsd, valueReceiveKh]);
   const handleSubmit = () => {
     setOpen(false);
     const total = valueReceiveKh / 4100 + valueReceiveUsd;
-    if (total < parseFloat(SubTotalUSD.toString())) {
+    if (total < parseFloat(propModalData.toString())) {
       alert("Please input receive Khmer Riel");
       setOpen(true);
       return;
     } else {
-      alert("Success");
       clearCart();
       setValueReceiveKh(0);
       setValueReceiveUsd(0);
@@ -68,12 +73,12 @@ const ModalPayment: React.FC<ModalPaymentProps> = (props) => {
                 <Label htmlFor="name" className="text-right">
                   Sub total(USD):
                   {parseFloat(
-                    (SubTotalUSD - totalReceiveUsd).toFixed(2)
+                    (propModalData - totalReceiveUsd).toFixed(2)
                   ).toString()}
                 </Label>
                 {/* <TabsTrigger value=x`"tab2">Sub total(KH):100000៛</TabsTrigger> */}
                 <Label htmlFor="name" className="text-right">
-                  Sub total(KH):{SubTotalKH} ៛
+                  Sub total(KH):{propModalData * 4100} ៛
                 </Label>
               </TabsList>
               <TabsContent className="hidden" value="tab1">
@@ -102,20 +107,6 @@ const ModalPayment: React.FC<ModalPaymentProps> = (props) => {
         <div className="grid gap-4 py-4 ">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
-              payment Method
-            </Label>
-            <Button className=" bg-cyan-400 rounded-[10px] text-slate-100 hover:bg-cyan-200">
-              Cash
-            </Button>
-            <Button className=" bg-cyan-400 rounded-[10px] text-slate-100 hover:bg-cyan-200">
-              Bank
-            </Button>
-            <Button className=" bg-cyan-400  rounded-[10px] text-slate-100 hover:bg-cyan-200">
-              Other
-            </Button>
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
               Receive (USD)
             </Label>
             <Input
@@ -138,7 +129,7 @@ const ModalPayment: React.FC<ModalPaymentProps> = (props) => {
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
-              DiscountF
+              Discount
             </Label>
             <Input id="discount" className="col-span-3" />
           </div>

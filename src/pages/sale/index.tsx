@@ -2,7 +2,7 @@ import Product, { Item } from "../../components/hook/usePage/sale/product";
 import Category from "../../components/hook/usePage/sale/category";
 import { useCartStore } from "@/store/useCartStore";
 import ListDataItem from "@/components/hook/usePage/sale/list";
-import React, { ChangeEvent, useState } from "react";
+import React, {  useState } from "react";
 
 const ProductData: Item[] = [
   {

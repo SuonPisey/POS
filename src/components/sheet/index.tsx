@@ -11,7 +11,6 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import { Input } from "../ui/input";
-import { Text } from "lucide-react";
 import { Textarea } from "@tremor/react";
 import { Table, TableHead, TableRow } from "../ui/table";
 interface SheetPaymentProps {
@@ -19,10 +18,6 @@ interface SheetPaymentProps {
 }
 const SheetPayment: React.FC<SheetPaymentProps> = (props) => {
   const { className } = props;
-  function rgba(arg0: number, arg1: number, arg2: number, arg3: number) {
-    throw new Error("Function not implemented.");
-  }
-
   return (
     <>
       <Sheet>

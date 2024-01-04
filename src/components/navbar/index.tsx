@@ -1,16 +1,17 @@
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import LiveTime from "../liveClock";
 import { Input } from "../ui/input";
-import { ChangeEvent } from "react";
-import React from "react";
-import { useStore } from "zustand";
-import { useCartStore } from "@/store/useCartStore";
+import { ChangeEvent, useEffect } from "react";
+import useSearchStore from "@/store/useSearchStore";
+
 export default function Navbar() {
-  const searchItem = useCartStore((state) => state.searchItem);
-  console.log(searchItem);
-  // function handleSearch(e: ChangeEvent<HTMLInputElement>) {
-  //   searchItem(e.target.value);
-  // }
+  const { searchValue, propSearchData } = useSearchStore();
+
+  function handleSearch(e: ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    console.log(value);
+   
+  }
   return (
     <>
       <div className="w-full h-[50%]   mb-5 ">
@@ -18,7 +19,7 @@ export default function Navbar() {
           <Input
             placeholder="Search "
             className=" my-auto ml-5 w-[50%]"
-            onChange={searchItem}
+            onChange={handleSearch}
           />
           <div className="ml-auto py-5 col-span-3 mr-5 flex  my-auto gap-5">
             <p className="font-bold">

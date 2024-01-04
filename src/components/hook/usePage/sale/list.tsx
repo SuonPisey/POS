@@ -15,19 +15,24 @@ import { Table, TableCell, TableRow } from "@/components/ui/table";
 import GenerateIcon from "@/components/icons/GenerateIcon";
 import ModalPayment from "./modal";
 import { Card } from "@/components/ui/card";
+import useModalStore from "@/store/usemodalStore";
 const ListDataItem = () => {
+  const {setModalData } = useModalStore();
   const { cart, removeFromCart } = useCartStore();
   const [subTotal, setSubTotal] = useState<number>(0);
   const clearCart = useCartStore((state) => state.clearCart);
-
   const rate = 4100;
+
   useEffect(() => {
     const sum = cart.items.reduce(
       (total, item) => total + item.price * item.qty,
       0
     );
+    setModalData(sum);
     setSubTotal(sum);
   }, [cart.items]);
+  // setDataModal(subTotal);
+  // console.log("Hello",setDataModal);
   return (
     <>
       <div className="grid grid-cols-2">
@@ -61,14 +66,14 @@ const ListDataItem = () => {
       </div>
       <div className="overflow-auto h-[560px] mt-5 ">
         {cart.items.map((item, idx) => (
-          <Card 
+          <Card
             className="max-w-full   min-h-[60px]  border-x-0 select-none cursor-pointer shadow-md hover:shadow-lg bg-white my-2 rounded-md px-6 py-2"
             key={idx}
             onClick={() => {
               removeFromCart(item);
             }}
           >
-            <List >
+            <List>
               <Title>{item.name}</Title>
               <div className="flex  ">
                 <p>Qty:{item.qty}</p>
@@ -101,7 +106,7 @@ const ListDataItem = () => {
       </Table>
       <br />
       <div>
-        <ModalPayment SubTotalKH={subTotal * rate} SubTotalUSD={subTotal} />
+        <ModalPayment />
       </div>
     </>
   );
