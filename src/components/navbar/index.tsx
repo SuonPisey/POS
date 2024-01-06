@@ -1,17 +1,18 @@
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import LiveTime from "../liveClock";
 import { Input } from "../ui/input";
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent } from "react";
 import useSearchStore from "@/store/useSearchStore";
 
 export default function Navbar() {
-  const { searchValue, propSearchData } = useSearchStore();
+  const { setSearchData } = useSearchStore();
 
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
-    console.log(value);
-   
+    setSearchData(value);
+    // console.log("Hello", setSearchData);
   }
+
   return (
     <>
       <div className="w-full h-[50%]   mb-5 ">

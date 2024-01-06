@@ -41,9 +41,7 @@ const ModalPayment: React.FC<ModalPaymentProps> = () => {
       setValueReceiveKh(0);
     }
   };
-  useEffect(() => {
-    console.log(valueReceiveUsd, valueReceiveKh);
-  }, [valueReceiveUsd, valueReceiveKh]);
+  useEffect(() => {}, [valueReceiveUsd, valueReceiveKh]);
   const handleSubmit = () => {
     setOpen(false);
     const total = valueReceiveKh / 4100 + valueReceiveUsd;
