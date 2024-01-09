@@ -15,7 +15,7 @@ import { Table, TableCell, TableRow } from "@/components/ui/table";
 import GenerateIcon from "@/components/icons/GenerateIcon";
 import ModalPayment from "./modal";
 import { Card } from "@/components/ui/card";
-import useModalStore from "@/store/usemodalStore";
+import useModalStore from "@/store/useModalStore";
 const ListDataItem = () => {
   const {setModalData } = useModalStore();
   const { cart, removeFromCart } = useCartStore();

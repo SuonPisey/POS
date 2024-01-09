@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React, { useEffect, useState } from "react";
 import { useCartStore } from "@/store/useCartStore";
-import useModalStore from "@/store/usemodalStore";
+import useModalStore from "@/store/useModalStore";
 
 interface ModalPaymentProps {
   className?: string; // Add className property
@@ -69,7 +69,7 @@ const ModalPayment: React.FC<ModalPaymentProps> = () => {
             <Tabs className="w-full select-none " defaultValue="tab1 ">
               <TabsList className="flex justify-around items-center p-4 bg-slate-100 rounded-t-lg">
                 <Label htmlFor="name" className="text-right">
-                  Sub total(USD):
+                  Sub total(USD):$
                   {parseFloat(
                     (propModalData - totalReceiveUsd).toFixed(2)
                   ).toString()}

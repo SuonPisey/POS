@@ -1,8 +1,6 @@
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
-import React, { useEffect } from "react";
-import GenerateIcon from "@/components/icons/GenerateIcon";
-import { CopySlash } from "lucide-react";
+import React from "react";
+
 export interface Item {
   id: string;
   name: string;
@@ -65,9 +63,9 @@ const Product: React.FC<ProductProps> = (props) => {
               <CardTitle className="text-md">{item.name}</CardTitle>
             </div>
           </CardContent>
-          <CardFooter className="text-xs p-0 justify-end flex items-center">
-            <div className="flex flex-col items-start gap-1 text-sm mx-auto ">
-              <Badge
+          <CardFooter className="text-xs p-0 justify-start flex items-center">
+            <div className="flex flex-col items-start gap-1 text-sm  ">
+              {/* <Badge 
                 className="items-center w-[180px] h-[30px]  cursor-pointer  hover:bg-slate-300  bg-cyan-500  "
                 variant="outline"
               >
@@ -78,7 +76,8 @@ const Product: React.FC<ProductProps> = (props) => {
                 <p className="text-center mx-auto text-slate-100">
                   ${item.price}/unit
                 </p>
-              </Badge>
+              </Badge> */}
+              <p className="pl-4 ">${item.price}/unit</p>
             </div>
           </CardFooter>
         </Card>
