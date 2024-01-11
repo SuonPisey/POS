@@ -6,11 +6,12 @@ import React, { useState } from "react";
 import { ProductAPI } from "@/data/product";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { QueryKeys } from "@/data/QueryKeys";
+
 const ProductData: Item[] = [
   {
     id: "1",
     categoryId: "1",
-    name: "Apple Apple Apple Apple Apple   ",
+    name: "Apple ",
     qty: 1,
     price: 100,
     img: "/para.png",
@@ -130,13 +131,11 @@ const SalePage: React.FC = () => {
     setFilteredData(newData);
   };
 
-  const queryClient = useQueryClient();
   const query = useQuery({
     queryKey: [QueryKeys.products],
     queryFn: ProductAPI.list,
   });
   console.log("query", query.data);
-
 
   return (
     <>
@@ -144,7 +143,7 @@ const SalePage: React.FC = () => {
         <div className="w-[100%] col-span-2 h-full  ">
           <Category onClick={handleCategorySelect} />
           <div className="overflow-y-auto h-[800px]">
-            <div className="   grid grid-cols-2  gap-4 h-[400px] px-1 w-[150]    mt-4 sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-3  2xl:grid-cols-4    ">
+            <div className="   grid grid-cols-2  gap-4 h-[400px] px-1 w-[150]    mt-4 sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-3  2xl:grid-cols-6    ">
               {selectedCategory === ""
                 ? ProductData.map((item, idx) => (
                     <Product

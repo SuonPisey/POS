@@ -27,7 +27,7 @@ const Product: React.FC<ProductProps> = (props) => {
     <>
       <div>
         <Card
-          className="max-w-[230px] min-w-[230px]  grid gap-2 min-h-[300px] max-h-[300px] shadow-md hover:shadow-2xl  "
+          className="max-w-[150px] min-w-[200px]  grid gap-0 min-h-[150px] max-h-[250px] shadow-md hover:shadow-2xl  "
           style={{
             borderRadius: "0px 15px 15px 15px",
           }}
