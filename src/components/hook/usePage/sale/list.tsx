@@ -17,7 +17,7 @@ import ModalPayment from "./modal";
 import { Card } from "@/components/ui/card";
 import useModalStore from "@/store/useModalStore";
 const ListDataItem = () => {
-  const {setModalData } = useModalStore();
+  const { setModalData } = useModalStore();
   const { cart, removeFromCart } = useCartStore();
   const [subTotal, setSubTotal] = useState<number>(0);
   const clearCart = useCartStore((state) => state.clearCart);

@@ -5,8 +5,8 @@ export default function BaseLayout() {
   return (
     <>
       <div className="bg-gray-100">
-        <Navbar />
-        <SalePage />
+        <Navbar />  
+        {/* <SalePage /> */}
       </div>
     </>
   );

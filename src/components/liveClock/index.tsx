@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Input } from "../ui/input";
 function LiveTime() {
   const [time, setTime] = useState(new Date());
   setInterval(() => {

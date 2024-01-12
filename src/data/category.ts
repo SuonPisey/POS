@@ -26,7 +26,6 @@ const categories: Category[] = [
         name: 'Sandwiches',
         image_url: 'https://cdn.auth0.com/blog/whatabyte/sandwich-sm.png'
     }
-
 ]
 
 export const CategoryAPI = {

@@ -115,6 +115,94 @@ const ProductData: Item[] = [
     price: 1,
     img: "/para.png",
     code: "1234",
+  }, {
+    id: "5",
+    categoryId: "1",
+    name: "Iphone 1",
+    qty: 10,
+    price: 10,
+    img: "/para.png",
+    code: "1234",
+  },
+  {
+    id: "6",
+    categoryId: "2",
+    name: "Iphone 1",
+    qty: 1,
+    price: 1,
+    img: "/para.png",
+    code: "1234",
+  },
+  {
+    id: "4",
+    categoryId: "4",
+    name: "Apple",
+    qty: 1,
+    price: 10,
+    img: "/para.png",
+    code: "123",
+  },
+  {
+    id: "5",
+    categoryId: "1",
+    name: "Iphone 1",
+    qty: 10,
+    price: 10,
+    img: "/para.png",
+    code: "1234",
+  },
+  {
+    id: "6",
+    categoryId: "2",
+    name: "Iphone 1",
+    qty: 1,
+    price: 1,
+    img: "/para.png",
+    code: "1234",
+  }, {
+    id: "5",
+    categoryId: "1",
+    name: "Iphone 1",
+    qty: 10,
+    price: 10,
+    img: "/para.png",
+    code: "1234",
+  },
+  {
+    id: "6",
+    categoryId: "2",
+    name: "Iphone 1",
+    qty: 1,
+    price: 1,
+    img: "/para.png",
+    code: "1234",
+  },
+  {
+    id: "4",
+    categoryId: "4",
+    name: "Apple",
+    qty: 1,
+    price: 10,
+    img: "/para.png",
+    code: "123",
+  },
+  {
+    id: "5",
+    categoryId: "1",
+    name: "Iphone 1",
+    qty: 10,
+    price: 10,
+    img: "/para.png",
+    code: "1234",
+  },
+  {
+    id: "6",
+    categoryId: "2",
+    name: "Iphone 1",
+    qty: 1,
+    price: 1,
+    img: "/para.png",
+    code: "1234",
   },
 ];
 
@@ -143,26 +231,26 @@ const SalePage: React.FC = () => {
         <div className="w-[100%] col-span-2 h-full  ">
           <Category onClick={handleCategorySelect} />
           <div className="overflow-y-auto h-[800px]">
-            <div className="   grid grid-cols-2  gap-4 h-[400px] px-1 w-[150]    mt-4 sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-3  2xl:grid-cols-6    ">
+            <div className="   grid grid-cols-2  gap-4 h-[400px] px-1 w-[150]  mt-4 sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3  2xl:grid-cols-6    ">
               {selectedCategory === ""
                 ? ProductData.map((item, idx) => (
-                    <Product
-                      item={item}
-                      key={`idx-${idx}`}
-                      onClick={(item) => {
-                        addToCart({
-                          id: item.id,
-                          name: item.name,
-                          qty: item.qty,
-                          price: item.price,
-                          subTotal: 0,
-                          categoryId: "",
-                        });
-                      }}
-                    />
-                  ))
+                  <Product
+                    item={item}
+                    key={`idx-${idx}`}
+                    onClick={(item) => {
+                      addToCart({
+                        id: item.id,
+                        name: item.name,
+                        qty: item.qty,
+                        price: item.price,
+                        subTotal: 0,
+                        categoryId: "",
+                      });
+                    }}
+                  />
+                ))
                 : inputValue === ""
-                ? filteredData.map((item, idx) => (
+                  ? filteredData.map((item, idx) => (
                     <Product
                       item={item}
                       key={`idx-${idx}`}
@@ -178,7 +266,7 @@ const SalePage: React.FC = () => {
                       }}
                     />
                   ))
-                : ProductData.filter(
+                  : ProductData.filter(
                     (item) =>
                       item.name
                         .toLowerCase()

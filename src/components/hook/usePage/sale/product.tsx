@@ -51,11 +51,11 @@ const Product: React.FC<ProductProps> = (props) => {
             <div className="flex items-center justify-center">
               <img
                 alt="POS Item Image"
-                className="w-[200px] h-[150px] object-cover "
+                className="w-[100px] h-[100px] object-cover "
                 src={item.img || "https://picsum.photos/200/300"}
                 style={{
-                  aspectRatio: "100/100",
-                  objectFit: "cover",
+                  
+                  // objectFit: "cover",
                 }}
               />
             </div>

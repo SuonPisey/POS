@@ -14,12 +14,12 @@ const Category: React.FC<CategoryProps> = ({ onClick }) => {
   return (
     <>
       {/* Category */}
-      <div className="overflow-x-auto flex w-[100%] max-h-16 overflow-red">
+      <div className="overflow-x-auto flex w-[100%] max-h-16 overflow-red h-14">
         {query.data?.map((item, idx) => (
           <Button
             key={idx}
             size="xl"
-            className="bg-slate-100  mx-2 h-8  active:bg-slate-200 "
+            className="bg-slate-100  mx-2   active:bg-slate-200    rounded-lg   hover:shadow-lg  hover:bg-slate-300  ease-in"
             onClick={() => {
               {
                 onClick(item.id);
